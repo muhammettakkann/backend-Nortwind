@@ -20,6 +20,15 @@ namespace EntityFrameWorkDemoFdr16Prjct1
                 Console.WriteLine(product.ProductName);
             }
         }
+        private static void GetProductsByCategory(int categoryId)
+        {
+            NorthwindContext northwindContext = new NorthwindContext();
+            var result = northwindContext.Products.Where(p =>p.CategoryId==categoryId);
+            foreach (var item in result)
+            {
+                Console.WriteLine(item.ProductName);
+            }
+        }
        
     }
 }
