@@ -1,0 +1,30 @@
+using DataAcces;
+using Entity;
+using System;
+using System.Collections.Generic;
+
+namespace Business
+{
+    public class ProductManager : IProductService
+    {
+        IProductDal _productDal;
+        public ProductManager(IProductDal productDal)
+        {
+            _productDal = productDal;
+            //_productDal burada seçmiş olduğumuz servisi temsil ediyor
+        }
+        public void Add(ProductIOS productIOS)
+        {
+            if (productIOS.Id == 1)
+            {
+                throw new DublicateIdException("ID Çakışması");
+            }
+            _productDal.Add(productIOS);
+        }
+
+        public List<ProductIOS> GetAll()
+        {
+            return _productDal.GetAll();
+        }
+    }
+}
